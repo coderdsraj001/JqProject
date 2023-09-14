@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+    <script src="../jquery/js/jquery.js"></script>
+    <!-- <style> 
+        #panel, #flip {
+          padding: 5px;
+          text-align: center;
+          background-color: #e5eecc;
+          border: solid 1px #c3c3c3;
+        }
+      
+        #panel {
+          padding: 50px;
+          /* display: none; */
+        }
+        </style> -->
+        <style> 
+            #panel, #flip {
+              padding: 5px;
+              font-size: 18px;
+              text-align: center;
+              background-color: #555;
+              color: white;
+              border: solid 1px #666;
+              border-radius: 3px;
+            }
+            
+            #panel {
+              padding: 50px;
+              display: none;
+            }
+        </style>
+</head>
+<body>
+    <!-- <h1>hello world!</h1>
+    <h2 class="jp">i am jp</h2>
+    <p id="p1">this is pera.</p>
+    <button>hide</button><br>
+
+    Name : <input type="text" name="fullname"><br>
+    Email: <input type="text" name="email"><br>
+
+    <p>If you click on the "Hide" button, I will disappear.</p>
+    
+    <button id="hide">hide</button>
+    <button id="show">show</button> -->
+
+
+    <!-- <p>Demonstrate fadeIn() with different parameters.</p>
+    <button>Click to fade in boxes</button><br><br>
+
+    <div id="div1" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+    <div id="div2" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+    <div id="div3" style="width:80px;height:80px;display:none;background-color:blue;"></div> -->
+
+    <!-- <p>Demonstrate fadeOut() with different parameters.</p>
+    <button>Click to fade out boxes</button><br><br>
+
+    <div id="div1" style="width:80px;height:80px;background-color:red;"></div><br>
+    <div id="div2" style="width:80px;height:80px;background-color:green;"></div><br>
+    <div id="div3" style="width:80px;height:80px;background-color:blue;"></div> -->
+
+    <!-- <div id="flip">Click to slide down panel</div>
+    <div id="panel">Hello world!</div> -->
+
+    <!-- <button>Start Animation</button>
+
+    <p>By default, all HTML elements have a static position, and cannot be moved. To manipulate the position, remember to first set the CSS position property of the element to relative, fixed, or absolute!</p>
+    <div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+    <div style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div> -->
+
+    <!-- <button id="stop">Stop sliding</button>
+
+    <div id="flip">Click to slide down panel</div>
+    <div id="panel">Hello world!</div> -->
+<!-- 
+    <button>Hide</button>
+    <p>This is a paragraph with little content.</p> -->
+
+    <p id="p1">jQuery is fun!!</p>
+    <button>Click me</button>
+
+    <script>
+        $(document).ready(function(){
+
+            // events in jquery:
+
+            //The $(document).ready() method allows us to execute a function when the document is fully loaded. 
+
+            //The function is executed when the user clicks on the HTML element.
+            // $("button").click(function(){
+            //     $(h1).hide();
+            // })
+
+            //The function is executed when the user double-clicks on the HTML element:
+            // $("button").dblclick(function(){
+            //     $(this).hide();
+            // })
+
+            //The function is executed when the mouse pointer enters the HTML element:
+            // $("#p1").mouseenter(function(){
+            //     alert("You enter p1.");
+            // })
+            
+            //The function is executed when the mouse pointer leaves the HTML element:
+            // $('#p1').mouseleave(function(){
+            //     alert("you leave the mouse from p1.")
+            // })
+
+            // The function is executed, when the left, middle or right mouse button is pressed down, while the mouse is over the HTML element:
+            // $('#p1').mousedown(function(){
+            //     alert("mouse down over p1");
+            // })
+
+            // The function is executed, when the left, middle or right mouse button is released, while the mouse is over the HTML element:
+            // $('#p1').mouseup(function(){
+            //     alert("mouse up over p1.")
+            // })
+
+            // The hover() method takes two functions and is a combination of the mouseenter() and mouseleave() methods.
+            // The first function is executed when the mouse enters the HTML element, and the second function is executed when the mouse leaves the HTML element:
+            // $('#p1').hover(function(){
+            //     alert("entered #p1.");
+            // },
+            // function(){
+            //     alert("leave #p1.");
+            // })
+
+            // The focus() method attaches an event handler function to an HTML form field.
+            // The function is executed when the form field gets focus:
+            // $('input').focus(function(){
+            //     $(this).css('background-color','yellow');
+            // });
+
+            //The function is executed when the form field loses focus:
+            // $('input').blur(function(){
+            //     $(this).css('background-color','red');
+            // })
+
+            // The on() method attaches one or more event handlers for the selected elements.
+            // Attach a click event to a <p> element:           
+            // $('p').on('click',function(){
+            //     $(this).hide();
+            // })
+
+            // $("p").on({
+            //     mouseenter: function(){
+            //     $(this).css("background-color", "lightgray");
+            // },
+            //     mouseleave: function(){
+            //     $(this).css("background-color", "lightblue");
+            // },
+            //     click: function(){
+            //     $(this).css("background-color", "yellow");
+            // }
+            // });
+
+
+
+            // Jquery Effects:
+
+            // 1. hide/show:
+
+            // With jQuery, you can hide and show HTML elements with the hide() and show() methods:
+            // $("#hide").click(function(){
+            //     $("p").hide();
+            // });
+
+            // $("#show").click(function(){
+            //     $("p").show();
+            // });
+
+            // The optional speed parameter specifies the speed of the hiding/showing, and can take the following values: "slow", "fast", or milliseconds.
+            // $("button").click(function(){
+            //     $("#p1").hide(1000);
+            // });
+            
+            // Shown elements are hidden and hidden elements are shown:
+            // $("button").click(function(){
+            //     $("p").toggle();
+            // });
+            
+            // 2. fade:
+
+            // The jQuery fadeIn() method is used to fade in a hidden element.
+            // he optional speed parameter specifies the duration of the effect. It can take the following values: "slow", "fast", or milliseconds.
+            // The optional callback parameter is a function to be executed after the fading completes.
+            // $("button").click(function(){
+            //     $("#div1").fadeIn();
+            //     $("#div2").fadeIn("slow");
+            //     $("#div3").fadeIn(3000);
+            // });
+            
+            // The jQuery fadeOut() method is used to fade out a visible element.
+            // The optional speed parameter specifies the duration of the effect. It can take the following values: "slow", "fast", or milliseconds.
+            // The optional callback parameter is a function to be executed after the fading completes.
+
+            // $("button").click(function(){
+            //     $("#div1").fadeOut();
+            //     $("#div2").fadeOut("slow");
+            //     $("#div3").fadeOut(3000);
+            // });
+            
+            // The jQuery fadeToggle() method toggles between the fadeIn() and fadeOut() methods.
+            // $("button").click(function(){
+            //     $("#div1").fadeToggle();
+            //     $("#div2").fadeToggle("slow");
+            //     $("#div3").fadeToggle(3000);
+            // });
+
+            // The jQuery fadeTo() method allows fading to a given opacity (value between 0 and 1).
+            // $("button").click(function(){
+            //     $("#div1").fadeTo("slow", 0.15);
+            //     $("#div2").fadeTo("slow", 0.4);
+            //     $("#div3").fadeTo("slow", 0.7);
+            // });
+
+            // 3.slide:
+            
+            // The jQuery slideDown() method is used to slide down an element.
+            // $(document).ready(function(){
+            //     $("#flip").click(function(){
+            //         $("#panel").slideDown("slow");
+            //     });
+            // });
+            
+            // The jQuery slideUp() method is used to slide up an element.
+            // $(document).ready(function(){
+            //     $("#flip").click(function(){
+            //         $("#panel").slideUp("slow");
+            //     });
+            // });
+            
+            // The jQuery slideToggle() method toggles between the slideDown() and slideUp() methods.
+            // $("#flip").click(function(){
+            //     $("#panel").slideToggle();
+            // });
+
+            // 4.Animation
+
+            //Animation: The jQuery animate() method is used to create custom animations.
+            // The following example demonstrates a simple use of the animate() method; it moves a <div> element to the right, until it has reached a left property of 250px:
+            // $("button").click(function(){
+            //     $("div").animate({left: '250px'});
+            // });
+            
+            //Notice that multiple properties can be animated at the same time:
+            // $("button").click(function(){
+            //     $("div").animate({
+            //     left: '250px',
+            //     opacity: '0.5',
+            //     height: '150px',
+            //     width: '150px'
+            //     });
+            // });
+            
+            
+            // It is also possible to define relative values (the value is then relative to the element's current value). This is done by putting += or -= in front of the value:
+            // $("button").click(function(){
+            //     $("div").animate({
+            //         left: '250px',
+            //         height: '+=150px',
+            //         width: '+=150px'
+            //     });
+            // });
+            
+            // You can even specify a property's animation value as "show", "hide", or "toggle":
+            // $("button").click(function(){
+            //     $("div").animate({
+            //         height: 'toggle'
+            //     });
+            // });
+            
+            //ex1:
+            // $("button").click(function(){
+            //     var div = $("div");
+            //     div.animate({height: '300px', opacity: '0.4'}, "slow");
+            //     div.animate({width: '300px', opacity: '0.8'}, "slow");
+            //     div.animate({height: '100px', opacity: '0.4'}, "slow");
+            //     div.animate({width: '100px', opacity: '0.8'}, "slow");
+            // });
+
+            //ex2
+            // $("button").click(function(){
+            //     var div = $("div");
+            //     div.animate({left: '100px'}, "slow");
+            //     div.animate({fontSize: '3em'}, "slow");
+            // }); 
+
+            //5.stop:
+
+            // The jQuery stop() method is used to stop an animation or effect before it is finished.
+            // The stop() method works for all jQuery effect functions, including sliding, fading and custom animations.
+            // $("#flip").click(function(){
+            //     $("#panel").slideDown(5000);
+            // });
+            // $("#stop").click(function(){
+            //     $("#panel").stop();
+            // });
+            
+            //6.callbacks: A callback function is executed after the current effect is 100% finished.
+
+            // A callback function is executed after the current effect is finished.
+            // $("button").click(function(){
+            //     $("p").hide("slow", function(){
+            //         alert("The paragraph is now hidden");
+            //     });
+            // });
+
+            //7.chaining:Chaining allows us to run multiple jQuery methods (on the same element) within a single statement.
+            
+            //However, there is a technique called chaining, that allows us to run multiple jQuery commands, one after the other, on the same element(s).
+            // $("button").click(function(){
+            //     $("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+            // });                                                  
+
+        });
+    </script>
+</body>
+</html>
