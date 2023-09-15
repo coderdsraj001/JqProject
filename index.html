@@ -22,12 +22,10 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col">
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
                     Heading
                 </button>
 
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -41,7 +39,7 @@
                             <div class="modal-body">
                                 <form id="myForm">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="heading" value="heading">
+                                        <input type="text" class="form-control" id="heading1" placeholder="Enter Heading" value="">
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="button1">Submit</button>
                                 </form>
@@ -50,14 +48,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="col order-1">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal1">
                     Sub-heading
                 </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -68,27 +65,25 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="myForm">
+                                    <select class="custom-select mb-2" id="convoy_list">
+                                        <option selected>select heading</option>
+                                    </select>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" class="form-control" id="subHeading" placeholder="Enter Sub-heading" value="">
                                     </div>
+                                    <button type="submit" class="btn btn-primary" id="button2">Submit</button>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col order-12">
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
                     Form
                 </button>
 
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
