@@ -9,9 +9,9 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <style>
-
-    .subHeadings {
-            min-height: 200px;
+    .subheadingtxt {
+        padding: 5px 0px;
+        border-radius: 10px;
     }
 </style>
 <body>
@@ -24,13 +24,13 @@
                 </button>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                <button type="button" id="SubHeadingId" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#subHeadingModal">
                     Sub Heading
                 </button>
             </div>
             <div class="col-1">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                <button type="button" id="formModelId" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#formModal">
                     Form
                 </button>
@@ -57,14 +57,81 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-3">
-        <div class="row" id="rowid">
-            <div class="col-lg-7 ms-4">
-                <main>
-
-                </main>
+    <!-- Sub Heading Section -->
+    <div class="modal fade" id="subHeadingModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sub Heading</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" class="formSubHeading">
+                    <div class="modal-body">
+                        <select class="form-select mt-3" aria-label="Default select example">
+                            <option value="heading" selected disabled>Please Select Heading</option>
+                        </select>
+                        <input type="text" class="form-control mt-3" placeholder="Please Enter Sub Heading" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary smtbtn" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="modal fade" id="formModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" class="formForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <select class="form-select" name="formheading" aria-label="Default select example">
+                            <option value="">Select Heading</option>
+                        </select><br>
+
+                        <select class="mt-3 form-select" name="formheading" aria-label="Default select example">
+                            <option value="subheading" selected disabled>Select Sub Heading</option>
+                        </select>
+                        <select id="controlType" class="select-input form-select mt-3"
+                            aria-label="Default select example">
+                            <option value="" selected disabled>Select Input Type</option>
+                            <option>button</option>
+                            <option>checkbox</option>
+                            <option>color</option>
+                            <option>email</option>
+                            <option>radio</option>
+                            <option>range</option>
+                            <option>datetime-local</option>
+                            <option>date</option>
+                            <option>number</option>
+                            <option>password</option>
+                            <option>file</option>
+                        </select>
+                        <input type="text" name="" placeholder="Label" class="form-contro mt-3"
+                            required>
+                        <input type="text" name="" placeholder="Class" class="form-control mt-3">
+                        <input type="text" name="" placeholder="Id" class="form-control mt-3">
+                        <input type="text" name="" placeholder="Placeholder"
+                            class="form-control placeholders mt-3">
+                        <input type="text" name="" placeholder="Value" class="form-control mt-3">
+                        <input type="text" name="" placeholder="Name" class="form-control mt-3">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-3" style="margin-left: 55px;">
+        <main>
+
+        </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
