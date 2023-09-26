@@ -8,12 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
-<style>
-    .subheadingtxt {
-        padding: 5px 0px;
-        border-radius: 10px;
-    }
-</style>
+
 <body>
     <div class="container-fluid ps-5">
         <div class="row mt-3 text-center">
@@ -24,7 +19,7 @@
                 </button>
             </div>
             <div class="col-2">
-                <button type="button" id="SubHeadingId" class="btn btn-primary" data-bs-toggle="modal"
+                <button type="button" id="SubSeadingId" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#subHeadingModal">
                     Sub Heading
                 </button>
@@ -37,7 +32,6 @@
             </div>
         </div>
     </div>
-    <!-- Heading Section -->
     <div class="modal fade" id="headingModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -57,7 +51,6 @@
         </div>
     </div>
 
-    <!-- Sub Heading Section -->
     <div class="modal fade" id="subHeadingModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,7 +73,6 @@
         </div>
     </div>
 
-    <!-- Form Section -->
     <div class="modal fade" id="formModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -90,36 +82,37 @@
                 </div>
                 <form action="" class="formForm" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <select class="form-select" name="formheading" aria-label="Default select example">
+                        <select class="formheading form-select" id="headings" name="formheading"
+                            aria-label="Default select example">
                             <option value="">Select Heading</option>
                         </select><br>
 
-                        <select class="mt-3 form-select" name="formheading" aria-label="Default select example">
+                        <select class="subheadingform mt-3 form-select" id="sectionTagId"
+                            aria-label="Default select example">
                             <option value="subheading" selected disabled>Select Sub Heading</option>
                         </select>
-                        <select id="controlType" class="select-input form-select mt-3"
+                        <select id="options" class="select-input form-select mt-3"
                             aria-label="Default select example">
                             <option value="" selected disabled>Select Input Type</option>
                             <option>button</option>
                             <option>checkbox</option>
                             <option>color</option>
+                            <option>datetime-local</option>
                             <option>email</option>
                             <option>radio</option>
                             <option>range</option>
-                            <option>datetime-local</option>
                             <option>date</option>
                             <option>number</option>
                             <option>password</option>
                             <option>file</option>
                         </select>
-                        <input type="text" name="" placeholder="Label" class="form-contro mt-3"
-                            required>
-                        <input type="text" name="" placeholder="Class" class="form-control mt-3">
-                        <input type="text" name="" placeholder="Id" class="form-control mt-3">
-                        <input type="text" name="" placeholder="Placeholder"
+                        <input type="text" name="" placeholder="Label" class="form-control label mt-3" required>
+                        <input type="text" name=""  placeholder="Class" class="form-control classes mt-3">
+                        <input type="text" name=""  placeholder="Id" class="form-control id mt-3">
+                        <input type="text" name=""  placeholder="Placeholder"
                             class="form-control placeholders mt-3">
-                        <input type="text" name="" placeholder="Value" class="form-control mt-3">
-                        <input type="text" name="" placeholder="Name" class="form-control mt-3">
+                        <input type="text" name=""  placeholder="Value" class="form-control value mt-3">
+                        <input type="text" name=""  placeholder="Name" class="form-control name mt-3">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
@@ -128,19 +121,22 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-3" style="margin-left: 55px;">
-        <main>
+    <div class="container-fluid mt-3">
+        <div class="row ms-4">
+            <div class="col-lg-6 ms-4">
+                <main>
 
-        </main>
+                </main>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="../jquery/js/script.js"></script>
-    <script src="../jquery/js/jquery.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script src="../jquery/js/script.js"></script>
+        <script src="../jquery/js/jquery.js"></script>
 </body>
 
 </html>
