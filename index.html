@@ -10,8 +10,17 @@
 </head>
 <style>
     .required-field {
-    border: 1px solid red; /* Add a red border to required fields */
-}
+        border: 1px solid red; /* Add a red border to required fields */
+    }
+    .dropdown-field-watch{
+        max-width: none !important;
+        font-size: 17px;
+    }
+
+    #options {
+        width: 465px;
+    }
+
 </style>
 <body>
     <div class="container-fluid ps-5">
@@ -95,21 +104,29 @@
                             aria-label="Default select example">
                             <option value="subheading" selected disabled>Select Sub Heading</option>
                         </select>
-                        <select id="options" class="select-input form-select mt-3"
+                        
+                        <select id="options" class="select-input mt-3"
                             aria-label="Default select example">
                             <option value="" selected disabled>Select Input Type</option>
-                            <option>button</option>
-                            <option>checkbox</option>
-                            <option>color</option>
-                            <option>datetime-local</option>
-                            <option>email</option>
-                            <option>radio</option>
-                            <option>range</option>
-                            <option>date</option>
-                            <option>number</option>
-                            <option>password</option>
-                            <option>file</option>
-
+                            <option>Button</option>
+                            <option>Checkbox</option>
+                            <option>Color</option>
+                            <option>Datetime-local</option>
+                            <option>Email</option>
+                            <option>Radio</option>
+                            <option>Range</option>
+                            <option>Date</option>
+                            <option>Number</option>
+                            <option>Password</option>
+                            <option>File</option>
+                            <option value="new_option_group" data-subselect="true">select</option>
+                            <optgroup label="Others">
+                                <option>Url</option>
+                                <option>Reset</option>
+                                <option>Search</option>
+                            </optgroup>
+                        </select>
+                                                
                         <input type="text" name="" placeholder="Label" id="label" class="form-control label mt-3 required-field" required>
                         <input type="text" name=""  placeholder="Class" class="form-control classes mt-3">
                         <input type="text" name=""  placeholder="Id" class="form-control id mt-3">
@@ -124,6 +141,7 @@
             </div>
         </div>
     </div>
+    
     <div class="container-fluid mt-3">
         <div class="row ms-4">
             <div class="col-lg-6 ms-4">
@@ -136,10 +154,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-        <script src="../jquery/js/script.js"></script>
-        <script src="../jquery/js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery/js/select-dropdown-submenu/dropdown-submenu-dist.css" />
+    <script src="../jquery/js/script.js"></script>
+    <script src="../jquery/js/jquery.js"></script>
+    <script src="../jquery/js/select-dropdown-submenu/dropdown-submenu.min.js"></script>
 </body>
 
 </html>

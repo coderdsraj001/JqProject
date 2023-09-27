@@ -1,4 +1,40 @@
 $(document).ready(function () {
+    $(function(){
+        $("#options").dropdownSubmenu();
+    });
+
+    $("#options").dropdownSubmenu({
+
+    // disable the plugin when the screen size is smaller than this value
+    minScreenWidth:500,
+  
+    // Watch programmatic changes
+    watchDisabled: true,  
+    watchSelectClasses: true,
+    watchHidden: true,  
+    watchChangeVal: false,
+    
+    // copy option's classes
+    copyOptionClasses:   true,
+    
+    // default CSS classes
+    wrapClass: "dropdown-submenu-wrapper", 
+    tuneClass: "dropdown-submenu-skin", 
+    customClass: "", 
+    
+  });
+
+    //refresh
+    $("#options").dropdownSubmenu('refresh');
+
+    // refresh the width
+    $("#options").dropdownSubmenu('refresh-width');
+
+    // destroy
+    $("#options").dropdownSubmenu('destroy');
+
+
+    
     var storedHeading = localStorage.getItem("Heading");
     if (storedHeading) {
         $("main").append(storedHeading);
@@ -24,6 +60,7 @@ $(document).ready(function () {
         var selectValue = $('main').html();
         localStorage.setItem("Heading", selectValue);
         // e.target.reset();
+        this.reset();
     });
 
     $('.smtbtn').attr('disabled',true);
@@ -39,6 +76,7 @@ $(document).ready(function () {
     });
 
     $(".formSubHeading").on('submit', function (e) {
+        e.preventDefault();
         var selectedSubHeading = $('select option:selected', this).val();
         var subheadingText = $('input', this).val();
         $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '</h4><form></form>');
@@ -49,9 +87,8 @@ $(document).ready(function () {
             $(this).text();
             var updatedValue = $('main').html();
             localStorage.setItem("Heading", updatedValue);
-            e.preventDefault();
-            // e.target.reset();
         });
+        this.reset();
     });
 
     $('section h1').each(function (index) {
@@ -93,10 +130,6 @@ $(document).ready(function () {
         event.preventDefault();
         var selectedHeading = $('.formheading option:selected').val();
         var selectedSubHeading = $('.subheadingform option:selected').val();
-        // $('.select-input').change(function () {
-        //     var formChangValue = $(this).val();
-        //     console.log("options :", formChangValue);
-        // });
         
         var InputId = $('.id').val();
         var inputPlaceholder = $('.placeholders').val();
@@ -105,11 +138,27 @@ $(document).ready(function () {
         var controlType = $('#options').val();
         var inputLabel = $('.label').val();
         var inputClass = $('.classes').val();
-        var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
-        $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div>' + element + '</div>');
-    
-        var selectValue = $('main').html();
-        localStorage.setItem("Heading", selectValue);
+        if (controlType === 'new_option_group'){
+            var nestedOptions = ["one","two","three"];
+
+            var nestedSelect = $('<select class="select-input mt-3">');
+            for (var i = 0; i < nestedOptions.length; i++) {
+                nestedSelect.append('<option>' + nestedOptions[i] + '</option>');
+            }
+            htmValue = nestedSelect.html()
+            var element = '<label>' + inputLabel + '</label>' + '<select>' + htmValue;
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div>' + element + '</div>');
+        
+            var selectValue = $('main').html();
+            localStorage.setItem("Heading", selectValue);
+        } else {
+            var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div>' + element + '</div>');
+            
+            var selectValue = $('main').html();
+            localStorage.setItem("Heading", selectValue);
+        }
+        this.reset(); 
     });
 
 });
@@ -128,3 +177,5 @@ function updateHeadingsAndSubheadings() {
         $('.formSubHeading select').append("<option value=" + index + ">" + subHeadingOfHeading + "</option>");
     });
 }
+
+

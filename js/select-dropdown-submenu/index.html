@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>jQuery Dropdown Submenu Plugin Example</title>
+<style>
+  html,* { font-family: 'Inter'; box-sizing: border-box; }
+body { background-color: #fafafa; line-height:1.6;}
+.lead { font-size: 1.5rem; font-weight: 300; }
+.container { margin:30px auto; max-width: 960px; }
+.btn { padding: 1.25rem; border: 0; border-radius: 3px; background-color: #4F46E5; color: #fff; cursor: pointer; }
+select {
+      -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border-color: #6b7280;
+    border-width: 1px;
+    border-radius: 0;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    min-width: 250px;
+}
+</style>
+<link rel="stylesheet" href="dropdown-submenu-dist.css" />
+</head>
+
+<body>
+<div class="container">
+  <h1>jQuery Dropdown Submenu Plugin Example</h1>
+  <style>
+.download{ padding: 1.25rem; border:0; border-radius:3px; background-color:#4F46E5; color:#fff;cursor:pointer; text-decoration:none;}.download:hover{color: #fff}#carbonads{display:block;overflow:hidden;max-width:728px;position:relative;font-size:22px;box-sizing:content-box}#carbonads>span{display:block}#carbonads a{color:#4F46E5;text-decoration:none}#carbonads a:hover{color:#4F46E5}.carbon-wrap{display:flex;align-items:center}.carbon-img{display:block;margin:0;line-height:1}.carbon-img img{display:block;height:90px;width:auto}.carbon-text{display:block;padding:0 1em;line-height:1.35;text-align:left}.carbon-poweredby{display:block;position:absolute;bottom:0;right:0;padding:6px 10px;text-align:center;text-transform:uppercase;letter-spacing:.5px;font-weight:600;font-size:8px;border-top-left-radius:4px;line-height:1;color:#aaa!important}@media only screen and (min-width:320px) and (max-width:759px){.carbon-text{font-size:14px}}
+</style>
+<div id="carbon-block"></div>
+<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2783044520727903"
+     crossorigin="anonymous"></script>
+<!-- jQuery_Replace_Demo -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2783044520727903"
+     data-ad-slot="7325992188"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+<p style="margin:2rem auto"><a class="download" href="https://www.jqueryscript.net/form/select-dropdown-submenu.html">Download This Plugin</a> <a class="download" href="https://www.jqueryscript.net/">Back To jQueryScript</a></p>
+  <p class="lead">A jQuery plugin that converts a select element with option groups into a multi-level,SEO-friendly dropdown list.</p>
+  <h2>Before</h2>
+  <select>
+      <option value="">Choose your OS:</option>
+      <optgroup label="PC">
+        <option value="mx-linux">MX Linux</option>
+        <option value="manjaro">Manjaro</option>
+        <option value="linux-mint">Linux Mint</option>
+        <option value="ubuntu" selected>Ubuntu</option>
+        <option value="w11">Windows 11</option>
+        <option value="w10">Windows 10</option>
+        <option value="w8">Windows 8</option>
+        <option value="w7">Windows 7</option>
+        <option value="ms-dos">MS-DOS</option>
+      </optgroup>
+      <optgroup label="Mac (icon)" data-icon="demo_stuff/mac.png">
+        <option value="big-sur">Big Sur</option>
+        <option value="catalina" class="css_tune_1">Catalina (CSS class)</option>
+        <option value="mojave">Mojave</option>
+        <option value="high-sierra" data-html-option="High%20%3Cstrong%3ESierra%3C%2Fstrong%3E%20%28HTML%29">High Sierra (HTML)</option>
+        <option value="sierra">Sierra</option>
+        <option value="el-capitan">El Capitan</option>
+        <option value="yosemite" data-icon="demo_stuff/mac.png">Yosemite (icon)</option>
+      </optgroup>
+      <option value="other">Other</option>
+    </select>
+  <h2>After</h2>
+  <select id="example">
+      <option value="">Choose your OS:</option>
+      <optgroup label="PC">
+        <option value="mx-linux">MX Linux</option>
+        <option value="manjaro">Manjaro</option>
+        <option value="linux-mint">Linux Mint</option>
+        <option value="ubuntu" selected>Ubuntu</option>
+        <option value="w11">Windows 11</option>
+        <option value="w10">Windows 10</option>
+        <option value="w8">Windows 8</option>
+        <option value="w7">Windows 7</option>
+        <option value="ms-dos">MS-DOS</option>
+      </optgroup>
+      <optgroup label="Mac (icon)" data-icon="demo_stuff/mac.png">
+        <option value="big-sur">Big Sur</option>
+        <option value="catalina" class="css_tune_1">Catalina (CSS class)</option>
+        <option value="mojave">Mojave</option>
+        <option value="high-sierra" data-html-option="High%20%3Cstrong%3ESierra%3C%2Fstrong%3E%20%28HTML%29">High Sierra (HTML)</option>
+        <option value="sierra">Sierra</option>
+        <option value="el-capitan">El Capitan</option>
+        <option value="yosemite" data-icon="demo_stuff/mac.png">Yosemite (icon)</option>
+      </optgroup>
+      <option value="other">Other</option>
+    </select>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="dropdown-submenu.js"></script>
+<script>
+  $( "#example" ).dropdownSubmenu();
+</script>
+<script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1VDDWMRSTH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1VDDWMRSTH');
+</script>
+</body>
+</html>
