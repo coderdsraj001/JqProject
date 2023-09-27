@@ -4,14 +4,38 @@ $(document).ready(function () {
         $("main").append(storedHeading);
     }
 
+    $('.sendButton').attr('disabled',true);
+    $('#message').keyup(function(){
+        if($(this).val().length !=0)
+            $('.sendButton').attr('disabled', false);            
+        else
+            $('.sendButton').attr('disabled',true);
+    });
+
+    $("#headingTextModel").click(function() {
+        $(".formHeading")[0].reset()
+    });
+
     $(".formHeading").on('submit', function (e) {
+        e.preventDefault();
         var newHeading = $('input').val();
         $("main").append('<section><h1>' + newHeading + '</h1><div class="subheadings"></div></section>');
         updateHeadingsAndSubheadings();
         var selectValue = $('main').html();
         localStorage.setItem("Heading", selectValue);
-        e.preventDefault();
-        e.target.reset();
+        // e.target.reset();
+    });
+
+    $('.smtbtn').attr('disabled',true);
+    $('#message1').keyup(function(){
+        if($(this).val().length !=0)
+            $('.smtbtn').attr('disabled', false);            
+        else
+            $('.smtbtn').attr('disabled',true);
+    });
+    
+    $("#SubSeadingId").click(function() {
+        $(".formSubHeading")[0].reset()
     });
 
     $(".formSubHeading").on('submit', function (e) {
@@ -26,7 +50,7 @@ $(document).ready(function () {
             var updatedValue = $('main').html();
             localStorage.setItem("Heading", updatedValue);
             e.preventDefault();
-            e.target.reset();
+            // e.target.reset();
         });
     });
 
@@ -53,13 +77,26 @@ $(document).ready(function () {
         });
     });
 
-    $(".formForm").on('submit', function(){
+    $('.sbmitBtn').attr('disabled',true);
+    $('#label').keyup(function(){
+        if($(this).val().length !=0)
+            $('.sbmitBtn').attr('disabled', false);            
+        else
+            $('.sbmitBtn').attr('disabled',true);
+    });
+
+    $("#formModelId").click(function() {
+        $(".formForm")[0].reset()
+    });
+
+    $(".formForm").on('submit', function(event){
+        event.preventDefault();
         var selectedHeading = $('.formheading option:selected').val();
         var selectedSubHeading = $('.subheadingform option:selected').val();
-        $('.select-input').change(function () {
-            var formChangValue = $(this).val();
-            console.log("options :", formChangValue);
-        });
+        // $('.select-input').change(function () {
+        //     var formChangValue = $(this).val();
+        //     console.log("options :", formChangValue);
+        // });
         
         var InputId = $('.id').val();
         var inputPlaceholder = $('.placeholders').val();
@@ -73,8 +110,6 @@ $(document).ready(function () {
     
         var selectValue = $('main').html();
         localStorage.setItem("Heading", selectValue);
-        e.preventDefault();
-        e.target.reset();
     });
 
 });

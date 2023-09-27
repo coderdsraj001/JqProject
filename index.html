@@ -8,7 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
-
+<style>
+    .required-field {
+    border: 1px solid red; /* Add a red border to required fields */
+}
+</style>
 <body>
     <div class="container-fluid ps-5">
         <div class="row mt-3 text-center">
@@ -41,10 +45,10 @@
                 </div>
                 <form action="" class="formHeading">
                     <div class="modal-body">
-                        <input type="text" class="form-control" placeholder="Please Enter Heading" required>
+                        <input type="text" id="message" class="form-control" placeholder="Please Enter Heading" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                        <button type="submit" class="btn btn-primary sendButton" data-bs-dismiss="modal">Submit</button>
                     </div>
                 </form>
             </div>
@@ -63,7 +67,7 @@
                         <select class="form-select mt-3" aria-label="Default select example">
                             <option value="heading" selected disabled>Please Select Heading</option>
                         </select>
-                        <input type="text" class="form-control mt-3" placeholder="Please Enter Sub Heading" required>
+                        <input type="text" id="message1" class="form-control mt-3" placeholder="Please Enter Sub Heading" required>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary smtbtn" data-bs-dismiss="modal">Submit</button>
@@ -85,7 +89,7 @@
                         <select class="formheading form-select" id="headings" name="formheading"
                             aria-label="Default select example">
                             <option value="">Select Heading</option>
-                        </select><br>
+                        </select>
 
                         <select class="subheadingform mt-3 form-select" id="sectionTagId"
                             aria-label="Default select example">
@@ -105,17 +109,16 @@
                             <option>number</option>
                             <option>password</option>
                             <option>file</option>
-                        </select>
-                        <input type="text" name="" placeholder="Label" class="form-control label mt-3" required>
+
+                        <input type="text" name="" placeholder="Label" id="label" class="form-control label mt-3 required-field" required>
                         <input type="text" name=""  placeholder="Class" class="form-control classes mt-3">
                         <input type="text" name=""  placeholder="Id" class="form-control id mt-3">
-                        <input type="text" name=""  placeholder="Placeholder"
-                            class="form-control placeholders mt-3">
+                        <input type="text" name=""  placeholder="Placeholder" class="form-control placeholders mt-3">
                         <input type="text" name=""  placeholder="Value" class="form-control value mt-3">
                         <input type="text" name=""  placeholder="Name" class="form-control name mt-3">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                        <button type="submit" class="btn btn-primary sbmitBtn" data-bs-dismiss="modal">Submit</button>
                     </div>
                 </form>
             </div>
