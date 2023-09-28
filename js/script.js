@@ -55,10 +55,9 @@ $(document).ready(function () {
     $(".formHeading").on('submit', function (e) {
         e.preventDefault();
         var newHeading = $('input').val();
-        $("main").append('<section><h1>' + newHeading + '</h1><div class="subheadings"></div></section>');
+        $("main").append('<section><h1>' + newHeading + '</h1><div id="c1" class="subheadings"></div></section>');
         updateHeadingsAndSubheadings();
-        var selectValue = $('main').html();
-        localStorage.setItem("Heading", selectValue);
+        localStorageData();
         // e.target.reset();
         this.reset();
     });
@@ -79,15 +78,14 @@ $(document).ready(function () {
         e.preventDefault();
         var selectedSubHeading = $('select option:selected', this).val();
         var subheadingText = $('input', this).val();
-        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '</h4><form></form>');
+        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div id="c2" class="container"><h4>' + subheadingText + '</h4><form class="c3"></div>');
         $('.formForm #sectionTagId option').remove();
         $('.formForm #sectionTagId').append("<option value='' selected disabled>Select Sub Heading</option>");
         $('section .container h4').each(function (index) {
             index = index + 1;
             $(this).text();
-            var updatedValue = $('main').html();
-            localStorage.setItem("Heading", updatedValue);
         });
+        localStorageData();
         this.reset();
     });
 
@@ -147,16 +145,14 @@ $(document).ready(function () {
             }
             htmValue = nestedSelect.html()
             var element = '<label>' + inputLabel + '</label>' + '<select>' + htmValue;
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div>' + element + '</div>');
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div id="c4">' + element + '</div>');
         
-            var selectValue = $('main').html();
-            localStorage.setItem("Heading", selectValue);
+            localStorageData();
         } else {
             var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div>' + element + '</div>');
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div id="c4">' + element + '</div>');
             
-            var selectValue = $('main').html();
-            localStorage.setItem("Heading", selectValue);
+            localStorageData();
         }
         this.reset(); 
     });
@@ -179,3 +175,25 @@ function updateHeadingsAndSubheadings() {
 }
 
 
+//drag drop
+
+$(document).ready(function () {    
+    $( "main" ).sortable({
+        axis: 'y'
+    });
+
+    $( "#c1, #c2" ).sortable({
+        connectWith: "#c1, #c2",
+        axis: 'y',
+        // containment: 'parent'
+    }).disableSelection();
+
+    localStorageData();
+});
+
+
+
+function localStorageData() {
+    var selectValue = $('main').html();
+    localStorage.setItem("Heading", selectValue);
+}
