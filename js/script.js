@@ -1,45 +1,32 @@
 $(document).ready(function () {
+    // dropdownSubmenu    
     $(function(){
         $("#options").dropdownSubmenu();
     });
 
     $("#options").dropdownSubmenu({
-
-    // disable the plugin when the screen size is smaller than this value
-    minScreenWidth:500,
-  
-    // Watch programmatic changes
-    watchDisabled: true,  
+    minScreenWidth:500,                          // disable the plugin when the screen size is smaller than this value
+    watchDisabled: true,                        // Watch programmatic changes
     watchSelectClasses: true,
     watchHidden: true,  
     watchChangeVal: false,
-    
-    // copy option's classes
-    copyOptionClasses:   true,
-    
-    // default CSS classes
-    wrapClass: "dropdown-submenu-wrapper", 
+    copyOptionClasses:   true,                  // copy option's classes
+    wrapClass: "dropdown-submenu-wrapper",      // default CSS classes
     tuneClass: "dropdown-submenu-skin", 
     customClass: "", 
     
   });
 
-    //refresh
-    $("#options").dropdownSubmenu('refresh');
+    $("#options").dropdownSubmenu('refresh');           //refresh
+    $("#options").dropdownSubmenu('refresh-width');     // refresh the width
+    $("#options").dropdownSubmenu('destroy');           // destroy
 
-    // refresh the width
-    $("#options").dropdownSubmenu('refresh-width');
-
-    // destroy
-    $("#options").dropdownSubmenu('destroy');
-
-
-    
     var storedHeading = localStorage.getItem("Heading");
     if (storedHeading) {
         $("main").append(storedHeading);
     }
 
+    //Heading
     $('.sendButton').attr('disabled',true);
     $('#message').keyup(function(){
         if($(this).val().length !=0)
@@ -55,13 +42,15 @@ $(document).ready(function () {
     $(".formHeading").on('submit', function (e) {
         e.preventDefault();
         var newHeading = $('input').val();
-        $("main").append('<section><h1>' + newHeading + '</h1><div id="c1" class="subheadings"></div></section>');
+        $("main").append('<section><h1>' + newHeading + '</h1><div class="subheadings"></div></section>');
         updateHeadingsAndSubheadings();
+        sorting();
         localStorageData();
-        // e.target.reset();
         this.reset();
     });
 
+
+    //Subheading
     $('.smtbtn').attr('disabled',true);
     $('#message1').keyup(function(){
         if($(this).val().length !=0)
@@ -78,15 +67,17 @@ $(document).ready(function () {
         e.preventDefault();
         var selectedSubHeading = $('select option:selected', this).val();
         var subheadingText = $('input', this).val();
-        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div id="c2" class="container"><h4>' + subheadingText + '</h4><form class="c3"></div>');
+        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '</h4><form ></div>');
         $('.formForm #sectionTagId option').remove();
         $('.formForm #sectionTagId').append("<option value='' selected disabled>Select Sub Heading</option>");
         $('section .container h4').each(function (index) {
             index = index + 1;
             $(this).text();
         });
+        sorting();
         localStorageData();
         this.reset();
+        
     });
 
     $('section h1').each(function (index) {
@@ -94,8 +85,11 @@ $(document).ready(function () {
         var subHeadingOfHeading = $(this).text();
         $('.formSubHeading select').append("<option value=" + index + ">" + subHeadingOfHeading + "</option>");
         $('.formheading').append("<option value=" + index + ">" + subHeadingOfHeading + "</option>");
+        localStorageData();
+        sorting();
     });
 
+    //Form
     $('.formheading').on("change", function () {
         var selectedSubHeadingOfHeading = $('.formheading option:selected').val();
         $('.formForm #sectionTagId option').remove();
@@ -110,6 +104,8 @@ $(document).ready(function () {
                 .attr("value", index + 2)
                 .text(itemData));
         });
+        localStorageData();
+        sorting();
     });
 
     $('.sbmitBtn').attr('disabled',true);
@@ -145,14 +141,16 @@ $(document).ready(function () {
             }
             htmValue = nestedSelect.html()
             var element = '<label>' + inputLabel + '</label>' + '<select>' + htmValue;
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div id="c4">' + element + '</div>');
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');
         
             localStorageData();
+            sorting();
         } else {
             var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div id="c4">' + element + '</div>');
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');
             
             localStorageData();
+            sorting();
         }
         this.reset(); 
     });
@@ -175,24 +173,37 @@ function updateHeadingsAndSubheadings() {
 }
 
 
-//drag drop
-
-$(document).ready(function () {    
-    $( "main" ).sortable({
+//Drag-drop
+function sorting() {    
+    // Make headings sortable
+    $("main").sortable({
+        change: function (event, ui) { localStorageData() },
+        update: function (event, ui) { localStorageData() },
+        items: "section",
         axis: 'y'
     });
 
-    $( "#c1, #c2" ).sortable({
-        connectWith: "#c1, #c2",
-        axis: 'y',
-        // containment: 'parent'
+    // Make subheadings sortable within and between headings
+    $("section .subheadings").sortable({
+        change: function (event, ui) { localStorageData() },
+        update: function (event, ui) { localStorageData() },
+        items: ".container",
+        revert: true,
+        connectWith: "section .subheadings",
+        axis: 'y'
     }).disableSelection();
+   
+    // Make form sortable within and between sub-headings
+    $(".container form").sortable({
+        change: function (event, ui) { localStorageData() },
+        update: function (event, ui) { localStorageData() },
+        items: ".formInputs",
+        connectWith: ".container form",
+        axis: 'y'
+    })
+}
 
-    localStorageData();
-});
-
-
-
+//fuction to set data in local storage
 function localStorageData() {
     var selectValue = $('main').html();
     localStorage.setItem("Heading", selectValue);
