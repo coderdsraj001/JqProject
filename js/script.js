@@ -52,25 +52,18 @@ $(document).ready(function () {
 });
 
 //Subheading
-$("#SubSeadingId").click(function() {
-    $(".formSubHeading")[0].reset();
+$(document).ready(function () {
+    $("#SubSeadingId").click(function() {
+        $(".formSubHeading")[0].reset();
+        checkAndToggleSubmitHeading();
+        updateHeadingsAndSubheadings();
+        localStorageData();
+    });
 
-    $('.smtbtn').attr('disabled',true);
-    $('#message1').keyup(function(){
-        if($(this).val().length !=0)
-            $('.smtbtn').attr('disabled', false);            
-        else
-            $('.smtbtn').attr('disabled',true);
-    }); 
-
-    updateHeadingsAndSubheadings();
-    localStorageData();
-});
-
-$(document).ready(function () {   
     localStorage.getItem("sub heading Heading")
     $(".formSubHeading").on('submit', function (e) {
         e.preventDefault();
+
         var selectedSubHeading = $('select option:selected', this).val();
         var subheadingText = $('input', this).val();
         $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '</h4><form ></div>');
@@ -84,6 +77,14 @@ $(document).ready(function () {
             e.target.reset();
         });  
     });
+
+    // Event handler for the "Select Heading" dropdown change
+    $('select.form-select').on('change', function () {
+        checkAndToggleSubmitHeading();
+    });
+
+    // Initial check and toggle when the page loads
+    checkAndToggleSubmitHeading();
     sorting();
 });  
 
@@ -91,14 +92,9 @@ $(document).ready(function () {
 $(document).ready(function () {   
     $("#formModelId").click(function() {
         $(".formForm")[0].reset()
-        $('.sbmitBtn').attr('disabled',true);
-        $('#label').keyup(function(){
-            if($(this).val().length !=0)
-                $('.sbmitBtn').attr('disabled', false);            
-            else
-                $('.sbmitBtn').attr('disabled',true);
-        });
+        checkAndToggleSubmitFormOption();
         updateHeadingsAndSubheadings();
+        localStorageData();
     });
     
     $('.formheading').on("change", function () {
@@ -121,6 +117,7 @@ $(document).ready(function () {
 
     $(".formForm").on('submit', function(event){
         event.preventDefault();
+
         var selectedHeading = $('.formheading option:selected').val();
         var selectedSubHeading = $('.subheadingform option:selected').val();
         
@@ -151,6 +148,18 @@ $(document).ready(function () {
         }
     });
 
+    // Event handler for the "Form Heading" dropdown change
+    $('.formheading').on('change', function () {
+        checkAndToggleSubmitFormOption();
+    });
+
+    // Event handler for the "Select Input Type" dropdown change
+    $('#options').on('change', function () {
+        checkAndToggleSubmitFormOption();
+    });
+
+    // Initial check and toggle when the page loads
+    checkAndToggleSubmitFormOption();
 });
 
 // Function to update the headings and subheadings
@@ -204,4 +213,28 @@ function sorting() {
 function localStorageData() {
     var selectValue = $('main').html();
     localStorage.setItem("Heading", selectValue);
+}
+
+// Function to check and toggle the submit button
+function checkAndToggleSubmitHeading() {
+    var selectedSubHeadingOption = $('select.form-select', '.formSubHeading').val();
+    // Disable or enable the submit button based on the conditions
+    if ((selectedSubHeadingOption === null)) {
+        $('.smtbtn').prop('disabled', true);
+    } else {
+        $('.smtbtn').prop('disabled', false);
+    }
+}
+
+// Function to check and toggle the submit button
+function checkAndToggleSubmitFormOption() {
+    var formHeadingSelected = $('.formheading').val();
+    var inputTypeSelected = $('#options').val();
+
+    // Check if all three dropdowns have values selected
+    if (formHeadingSelected && inputTypeSelected) {
+        $('.sbmitBtn').prop('disabled', false);
+    } else {
+        $('.sbmitBtn').prop('disabled', true);
+    }
 }
