@@ -1,25 +1,3 @@
-$(document).ready(function () {
-    $(function(){                                // dropdownSubmenu    
-        $("#options").dropdownSubmenu();
-    });
-
-    $("#options").dropdownSubmenu({
-        minScreenWidth:500,                          // disable the plugin when the screen size is smaller than this value
-        watchDisabled: true,                        // Watch programmatic changes
-        watchSelectClasses: true,
-        watchHidden: true,  
-        watchChangeVal: false,
-        copyOptionClasses:   true,                  // copy option's classes
-        wrapClass: "dropdown-submenu-wrapper",      // default CSS classes
-        tuneClass: "dropdown-submenu-skin", 
-        customClass: "",         
-    });
-
-    $("#options").dropdownSubmenu('refresh');           //refresh
-    $("#options").dropdownSubmenu('refresh-width');     // refresh the width
-    $("#options").dropdownSubmenu('destroy');           // destroy
-});
-
 //Heading
 $(document).ready(function () {    
     var storedHeading = localStorage.getItem("Heading");
@@ -42,7 +20,7 @@ $(document).ready(function () {
     $(".formHeading").on('submit', function (e) {
         e.preventDefault();
         var newHeading = $('input').val();
-        $("main").append('<section><h1>' + newHeading + '</h1><div class="subheadings"></div></section>');
+        $("main").append('<section><h1>' + newHeading + '<button class="remove btn btn-danger" onclick="removed(this)"><img src="../jquery/js/remove.png" alt="Delete" height="20px"></button></h1><div class="subheadings"></div></section>');
         updateHeadingsAndSubheadings();
         localStorageData();
         sorting();
@@ -66,7 +44,7 @@ $(document).ready(function () {
 
         var selectedSubHeading = $('select option:selected', this).val();
         var subheadingText = $('input', this).val();
-        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '</h4><form ></div>');
+        $("section:nth-child(" + selectedSubHeading + ") div.subheadings").append('<div class="container"><h4>' + subheadingText + '<button class="btn btn-danger" onclick="removeChild11(this)"><img src="../jquery/js/remove.png" alt="Delete" height="20px"></button></h4><form ></div>');
         $('.formForm #sectionTagId option').remove();
         $('.formForm #sectionTagId').append("<option value='' selected disabled>Select Sub Heading</option>");
         $('section .container h4').each(function (index) {
@@ -137,12 +115,12 @@ $(document).ready(function () {
             }
             htmValue = nestedSelect.html()
             var element = '<label>' + inputLabel + '</label>' + '<select>' + htmValue;
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');     
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '<button class="btn btn-danger" onclick="removeFormInputs(this)"><img src="../jquery/js/remove.png" alt="Delete" height="20px"></button></div>');     
             localStorageData();
             sorting();
         } else {
             var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');           
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '<button class="btn btn-danger" onclick="removeFormInputs(this)"><img src="../jquery/js/remove.png" alt="Delete" height="20px"></button></div>');           
             localStorageData();
             sorting();
         }
@@ -230,6 +208,7 @@ function checkAndToggleSubmitHeading() {
 function checkAndToggleSubmitFormOption() {
     var formHeadingSelected = $('.formheading').val();
     var inputTypeSelected = $('#options').val();
+    
 
     // Check if all three dropdowns have values selected
     if (formHeadingSelected && inputTypeSelected) {
@@ -237,4 +216,38 @@ function checkAndToggleSubmitFormOption() {
     } else {
         $('.sbmitBtn').prop('disabled', true);
     }
+}
+
+
+    // // Handle click events on delete icons
+    // $(".delete-icon").on("click", function () {
+    //     var type = $(this).data("type");
+
+    //     if (type == "heading") {
+    //         // Handle delete action for headings
+    //         $(this).closest("section").remove();
+    //     }
+    //     // } else if (type === "subheading") {
+    //     //     // Handle delete action for subheadings
+    //     //     $(this).closest(".container").remove();
+    //     // } else if (type === "input") {
+    //     //     // Handle delete action for form inputs
+    //     //     $(this).closest(".formInputs").remove();
+    //     // }
+    // });
+
+function removed(rm) {
+    $(rm).parent().parent().remove();
+    // $(rm).siblings().remove();
+    localStorageData();
+}
+
+function removeChild11(rm) {
+    $(rm).parent().parent().remove();
+    localStorageData();
+}
+
+function removeFormInputs(rm) {
+    $(rm).parent().parent().remove();
+    localStorageData();
 }
