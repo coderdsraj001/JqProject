@@ -1,42 +1,42 @@
 $(document).ready(function () {
-    // dropdownSubmenu    
-    $(function(){
+    $(function(){                                // dropdownSubmenu    
         $("#options").dropdownSubmenu();
     });
 
     $("#options").dropdownSubmenu({
-    minScreenWidth:500,                          // disable the plugin when the screen size is smaller than this value
-    watchDisabled: true,                        // Watch programmatic changes
-    watchSelectClasses: true,
-    watchHidden: true,  
-    watchChangeVal: false,
-    copyOptionClasses:   true,                  // copy option's classes
-    wrapClass: "dropdown-submenu-wrapper",      // default CSS classes
-    tuneClass: "dropdown-submenu-skin", 
-    customClass: "", 
-    
-  });
+        minScreenWidth:500,                          // disable the plugin when the screen size is smaller than this value
+        watchDisabled: true,                        // Watch programmatic changes
+        watchSelectClasses: true,
+        watchHidden: true,  
+        watchChangeVal: false,
+        copyOptionClasses:   true,                  // copy option's classes
+        wrapClass: "dropdown-submenu-wrapper",      // default CSS classes
+        tuneClass: "dropdown-submenu-skin", 
+        customClass: "",         
+    });
 
     $("#options").dropdownSubmenu('refresh');           //refresh
     $("#options").dropdownSubmenu('refresh-width');     // refresh the width
     $("#options").dropdownSubmenu('destroy');           // destroy
+});
 
+//Heading
+$(document).ready(function () {    
     var storedHeading = localStorage.getItem("Heading");
     if (storedHeading) {
         $("main").append(storedHeading);
     }
 
-    //Heading
-    $('.sendButton').attr('disabled',true);
-    $('#message').keyup(function(){
-        if($(this).val().length !=0)
-            $('.sendButton').attr('disabled', false);            
-        else
-            $('.sendButton').attr('disabled',true);
-    });
-
     $("#headingTextModel").click(function() {
-        $(".formHeading")[0].reset()
+        $(".formHeading")[0].reset();
+
+        $('.sendButton').attr('disabled',true);
+        $('#message').keyup(function(){
+            if($(this).val().length !=0)
+                $('.sendButton').attr('disabled', false);            
+            else
+                $('.sendButton').attr('disabled',true);
+        });
     });
 
     $(".formHeading").on('submit', function (e) {
@@ -44,25 +44,31 @@ $(document).ready(function () {
         var newHeading = $('input').val();
         $("main").append('<section><h1>' + newHeading + '</h1><div class="subheadings"></div></section>');
         updateHeadingsAndSubheadings();
-        sorting();
         localStorageData();
-        this.reset();
+        sorting();
+        e.target.reset();
     });
+    sorting();
+});
 
+//Subheading
+$("#SubSeadingId").click(function() {
+    $(".formSubHeading")[0].reset();
 
-    //Subheading
     $('.smtbtn').attr('disabled',true);
     $('#message1').keyup(function(){
         if($(this).val().length !=0)
             $('.smtbtn').attr('disabled', false);            
         else
             $('.smtbtn').attr('disabled',true);
-    });
-    
-    $("#SubSeadingId").click(function() {
-        $(".formSubHeading")[0].reset()
-    });
+    }); 
 
+    updateHeadingsAndSubheadings();
+    localStorageData();
+});
+
+$(document).ready(function () {   
+    localStorage.getItem("sub heading Heading")
     $(".formSubHeading").on('submit', function (e) {
         e.preventDefault();
         var selectedSubHeading = $('select option:selected', this).val();
@@ -73,23 +79,28 @@ $(document).ready(function () {
         $('section .container h4').each(function (index) {
             index = index + 1;
             $(this).text();
+            localStorageData();
+            sorting();
+            e.target.reset();
+        });  
+    });
+    sorting();
+});  
+
+//Form
+$(document).ready(function () {   
+    $("#formModelId").click(function() {
+        $(".formForm")[0].reset()
+        $('.sbmitBtn').attr('disabled',true);
+        $('#label').keyup(function(){
+            if($(this).val().length !=0)
+                $('.sbmitBtn').attr('disabled', false);            
+            else
+                $('.sbmitBtn').attr('disabled',true);
         });
-        sorting();
-        localStorageData();
-        this.reset();
-        
+        updateHeadingsAndSubheadings();
     });
-
-    $('section h1').each(function (index) {
-        index = index + 1;
-        var subHeadingOfHeading = $(this).text();
-        $('.formSubHeading select').append("<option value=" + index + ">" + subHeadingOfHeading + "</option>");
-        $('.formheading').append("<option value=" + index + ">" + subHeadingOfHeading + "</option>");
-        localStorageData();
-        sorting();
-    });
-
-    //Form
+    
     $('.formheading').on("change", function () {
         var selectedSubHeadingOfHeading = $('.formheading option:selected').val();
         $('.formForm #sectionTagId option').remove();
@@ -104,20 +115,8 @@ $(document).ready(function () {
                 .attr("value", index + 2)
                 .text(itemData));
         });
-        localStorageData();
         sorting();
-    });
-
-    $('.sbmitBtn').attr('disabled',true);
-    $('#label').keyup(function(){
-        if($(this).val().length !=0)
-            $('.sbmitBtn').attr('disabled', false);            
-        else
-            $('.sbmitBtn').attr('disabled',true);
-    });
-
-    $("#formModelId").click(function() {
-        $(".formForm")[0].reset()
+        localStorageData();
     });
 
     $(".formForm").on('submit', function(event){
@@ -141,18 +140,15 @@ $(document).ready(function () {
             }
             htmValue = nestedSelect.html()
             var element = '<label>' + inputLabel + '</label>' + '<select>' + htmValue;
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');
-        
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');     
             localStorageData();
             sorting();
         } else {
             var element = '<label>' + inputLabel + '</label> <input type="' + controlType + '" label="' + inputLabel + '" class="' + inputClass + '" id="' + InputId + '" value="' + inputValue + '" name="' + inputName + '" placeholder="' + inputPlaceholder + '"  />';
-            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');
-            
+            $('main section:nth-child(' + selectedHeading + ') div .container:nth-child(' + (selectedSubHeading - 1) + ') form').append('<div class="formInputs">' + element + '</div>');           
             localStorageData();
             sorting();
         }
-        this.reset(); 
     });
 
 });
@@ -201,6 +197,7 @@ function sorting() {
         connectWith: ".container form",
         axis: 'y'
     })
+    localStorageData();
 }
 
 //fuction to set data in local storage
